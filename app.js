@@ -1,21 +1,36 @@
-const ItemController = (function(){
-	let data = []
+const ItemCtrl = (function() {
+	const Item = function(id, name, calories) {
+		this.id = id
+		this.name = name
+		this.calories = calories
+	}
 
-	function add(item){
-		data.push(item)
-		console.log("item is added and lol")
+	const data = {
+		items: [
+			{id: 0, name: 'Steak Dinner', calories: 1200},
+			{id: 1, name: 'Cookie', calories: 400},
+			{id: 2, name: 'Eggs', calories: 300}
+			],
+		total: 0
 	}
-	function get(id){
-		return data.find(item => {
-			return item.id === id
-		})
-	}
+
 	return {
-		add: add,
-		get: get
+		logData: function() {
+			return data
+		}
 	}
-
 })();
 
-ItemController.add({id: 1, name: 'KArl KArilaid ihihihaaaa'})
-console.log(ItemController.get(1))
+const UICtrl = (function() {
+	console.log("UICtrl")
+})();
+
+const App = (function(ItemCtrl, UICtrl) {
+	return {
+		init: function(){
+			console.log('Initializing App')
+		}
+	}
+})(ItemCtrl, UICtrl);
+
+App.init()
